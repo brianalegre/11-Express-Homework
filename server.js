@@ -33,9 +33,6 @@ app.post('/api/notes', (req, res) => {
     // Log POST received
     console.log(`${req.method} request recieved to add to notes`)
 
-    // Read current saved notes
-    const currentNotes = fs.readFileSync(path.join(process.cwd(), '/db/db.json'))
-
     // Deconstruct
     const { title, text } = req.body;
 
@@ -47,7 +44,8 @@ app.post('/api/notes', (req, res) => {
             note_id: uuid(),
         }
 
-        // Obtain existing reviews
+
+        // Read current saved notes
         fs.readFileSync('./db/db.json', 'utf8', (err, data) => {
             if (err) {
                 console.error(err);
@@ -56,7 +54,7 @@ app.post('/api/notes', (req, res) => {
                 const parsedNotes = JSON.parse(data);
 
                 // Add a new review
-                parsedNotes.push(newNotes);
+                parsedNotes.push(newNote);
 
                 // Write updated reviews back to the file
                 fs.writeFile(
