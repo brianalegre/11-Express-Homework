@@ -46,7 +46,7 @@ app.post('/api/notes', (req, res) => {
 
 
         // Read current saved notes
-        fs.readFile('./db/db.json', 'utf8', (err, data) => {
+        fs.readFile(path.join(process.cwd(), './db/db.json'), 'utf8', (err, data) => {
             if (err) {
                 console.error(err);
             } else {
@@ -56,9 +56,9 @@ app.post('/api/notes', (req, res) => {
                 // Add a new review
                 parsedNotes.push(newNote);
 
-                // Write updated reviews back to the file
+                // Write new notes back to the file
                 fs.writeFile(
-                    './db/db.json',
+                    path.join(process.cwd(), './db/db.json'),
                     JSON.stringify(parsedNotes, null, 4),
                     (writeErr) =>
                         writeErr
