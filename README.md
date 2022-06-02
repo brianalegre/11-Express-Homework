@@ -45,6 +45,8 @@ Create an application called Note Taker that can be used to write and save notes
 ## Links
 -   Github Repository:
     - https://github.com/brianalegre/11-Express-Homework
+-   Heroku Deployed:
+    - https://alegre-note-taker.herokuapp.com/
 -   Video Demo (Youtube):
     - Pending
 -   Video Demo (Github):
