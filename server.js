@@ -88,3 +88,10 @@ app.post('/api/notes', (req, res) => {
 app.get('*', (req, res) =>
     res.sendFile(path.join(__dirname, '/public/index.html'))
 )
+
+// To try later:
+// readAndAppend(newTip, './db/tips.json');
+// res.json(`Tip added successfully 🚀`);
+// } else {
+// res.error('Error in adding tip');
+// }
