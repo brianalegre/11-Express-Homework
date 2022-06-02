@@ -16,7 +16,7 @@ app.listen(PORT, () => console.log(`Listening on PORT: ${PORT}`))
 
 // Variables
 const notesData = require('./db/db.json');
-const req = require('express/lib/request');
+// const req = require('express/lib/request');
 
 // GET Route for notes.html
 app.get('/notes', (req, res) =>
@@ -46,7 +46,7 @@ app.post('/api/notes', (req, res) => {
 
 
         // Read current saved notes
-        fs.readFileSync('./db/db.json', 'utf8', (err, data) => {
+        fs.readFile('./db/db.json', 'utf8', (err, data) => {
             if (err) {
                 console.error(err);
             } else {
