@@ -4,6 +4,7 @@ const path = require('path')
 const express = require('express')
 const uuid = require('./helpers/uuid')
 const app = express();
+const process = require('process')
 
 // Middleware for parsing JSON and URLencoded data
 app.use(express.json());
@@ -32,6 +33,7 @@ app.get('/api/notes', (req, res) =>
 app.post('/api/notes', (req, res) => {
     // Log POST received
     console.log(`${req.method} request recieved to add to notes`)
+    console.log("Current working directory:", process.cwd())
 
     // Deconstruct
     const { title, text } = req.body;
