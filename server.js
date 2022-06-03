@@ -48,7 +48,7 @@ app.post('/api/notes', (req, res) => {
 
 
         // Read current saved notes
-        fs.readFile(path.join(process.cwd(), '/db/db.json'), 'utf8', (err, data) => {
+        fs.readFile('./db/db.json', 'utf8', (err, data) => {
             if (err) {
                 console.error(err);
             } else {
@@ -60,7 +60,7 @@ app.post('/api/notes', (req, res) => {
 
                 // Write new notes back to the file
                 fs.writeFile(
-                    path.join(process.cwd(), '/db/db.json'),
+                    './db/db.json',
                     JSON.stringify(parsedNotes, null, 4),
                     (writeErr) =>
                         writeErr
