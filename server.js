@@ -4,7 +4,8 @@ const path = require('path')
 const express = require('express')
 const uuid = require('./helpers/uuid')
 const app = express();
-const process = require('process')
+// const process = require('process');
+// const { json } = require('express/lib/response');
 
 // Middleware for parsing JSON and URLencoded data
 app.use(express.json());
@@ -26,7 +27,7 @@ app.get('/notes', (req, res) =>
 
 // GET Route for /api/notes
 app.get('/api/notes', (req, res) => {
-    const notesData = fs.readFileSync('./db/db.json', 'utf8')
+    const notesData = JSON.parse(fs.readFileSync('./db/db.json', 'utf8'))
     res.json(notesData)
 })
 
