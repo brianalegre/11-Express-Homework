@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`Listening on PORT: ${PORT}`))
 
 // Variables
-const notesData = require('./db/db.json');
+// const notesData = require('./db/db.json');
 // const req = require('express/lib/request');
 
 // GET Route for notes.html
@@ -25,9 +25,10 @@ app.get('/notes', (req, res) =>
 )
 
 // GET Route for /api/notes
-app.get('/api/notes', (req, res) =>
+app.get('/api/notes', (req, res) => {
+    const notesData = fs.readFileSync('./db/db.json', 'utf8')
     res.json(notesData)
-)
+})
 
 // POST Route for /api/notes
 app.post('/api/notes', (req, res) => {
