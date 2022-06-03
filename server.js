@@ -33,7 +33,7 @@ app.get('/api/notes', (req, res) =>
 app.post('/api/notes', (req, res) => {
     // Log POST received
     console.log(`${req.method} request recieved to add to notes`)
-    console.log("Current working directory:", process.cwd())
+    console.log("Current working directory!!!!!!!!!!!!:", process.cwd())
 
     // Deconstruct
     const { title, text } = req.body;
