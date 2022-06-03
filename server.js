@@ -57,7 +57,7 @@ app.post('/api/notes', (req, res) => {
 
                 // Add a new review
                 parsedNotes.push(newNote);
-
+                console.log(`Hello this is brian`)
                 // Write new notes back to the file
                 fs.writeFile(
                     './db/db.json',
@@ -75,7 +75,7 @@ app.post('/api/notes', (req, res) => {
             status: 'Succcess',
             body: newNote,
         }
-
+        console.log(`Hello this is chad`)
         // Send response status
         res.status(201).json(response)
     } else {
