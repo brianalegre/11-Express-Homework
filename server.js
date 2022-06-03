@@ -89,3 +89,6 @@ app.get('*', (req, res) =>
 // } else {
 // res.error('Error in adding tip');
 // }
+
+// Lookup nanoid
+// Nick says its better than UUID
