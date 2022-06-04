@@ -80,11 +80,12 @@ app.post('/api/notes', (req, res) => {
 // Bonus
 // GET route for ID
 // Testing call for ID
-app.get('/api/notes/:id', (req, res) => {
+app.get('/api/notes/:note_id', (req, res) => {
     const requestedTerm = req.params.note_id
     const readNotes = fs.readFileSync('./db/db.json', 'utf8')
     // Iterate through the terms name to check if it matches `req.params.term`
     console.log('READ NOTES LENGTH:', readNotes.length)
+    console.log('READ NOTES------:', readNotes)
     console.log('REQUESTED TERM IS:', requestedTerm)
 
     if (requestedTerm) {
