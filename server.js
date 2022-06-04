@@ -77,6 +77,28 @@ app.post('/api/notes', (req, res) => {
     }
 })
 
+// Bonus
+// GET route for ID
+// Testing call for ID
+app.get('/api/notes/:id', (req, res) => {
+    const requestedTerm = req.params.note_id
+    const readNotes = fs.readFileSync('./db/db.json', 'utf8')
+    // Iterate through the terms name to check if it matches `req.params.term`
+    if (requestedTerm) {
+        for (let i = 0; i < readNotes.length; i++) {
+            if (requestedTerm === readNotes[i]) {
+                return res.json(readNotes[i]);
+            }
+        }
+    }
+
+
+    // Return a message if the term doesn't exist in our DB
+    return res.json('No term found');
+
+})
+
+
 // GET Route for index.html
 // Needs to be last
 app.get('*', (req, res) =>
