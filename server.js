@@ -45,7 +45,7 @@ app.post('/api/notes', (req, res) => {
         const newNote = {
             title,
             text,
-            note_id: uuid(),
+            note: uuid(),
         }
 
 
@@ -80,8 +80,8 @@ app.post('/api/notes', (req, res) => {
 // Bonus
 // GET route for ID
 // Testing call for ID
-app.get('/api/notes/:note_id', (req, res) => {
-    const requestID = req.params.note_id
+app.get('/api/notes/:note', (req, res) => {
+    const requestID = req.params.note
     const readNotes = fs.readFileSync('./db/db.json', 'utf8')
     const parsedNotes = JSON.parse(readNotes);
     // Iterate through the terms name to check if it matches `req.params.note_id`
@@ -92,7 +92,7 @@ app.get('/api/notes/:note_id', (req, res) => {
         console.info(`${req.method} request received to get a single a review`);
         for (let i = 0; i < parsedNotes.length; i++) {
             const currentID = parsedNotes[i]
-            if (currentID.note_id === requestID) {
+            if (currentID.note === requestID) {
                 return res.json(currentID);
             }
         }
@@ -103,8 +103,8 @@ app.get('/api/notes/:note_id', (req, res) => {
 })
 
 // DELETE Route for ID
-app.delete('/api/notes/:note_id', (req, res) => {
-    const deleteID = req.params.note_id
+app.delete('/api/notes/:note', (req, res) => {
+    const deleteID = req.params.note
     const readNotes = fs.readFileSync('./db/db.json', 'utf8')
     const parsedNotes = JSON.parse(readNotes);
     // Iterate through the terms name to check if it matches `req.params.note_id`
@@ -115,7 +115,7 @@ app.delete('/api/notes/:note_id', (req, res) => {
         console.info(`${req.method} request received to get a single a review`);
         for (let i = 0; i < parsedNotes.length; i++) {
             const currentID = parsedNotes[i]
-            if (currentID.note_id === deleteID) {
+            if (currentID.note === deleteID) {
                 const indexID = parsedNotes.indexOf(currentID)
                 parsedNotes.splice(indexID, 1)
                 // Write new notes back to the file
