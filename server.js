@@ -103,24 +103,31 @@ app.post('/api/notes', (req, res) => {
 // })
 
 app.get('app/notes/:note_id', (req, res) => {
-    if (req.params.note_id) {
-        console.log(`${req.method} request recieved to get a single data point`);
-        const requestedID = req.params.note_id;
-        const readNotes = fs.readFileSync('./db/db.json', 'utf8')
-        const parsedNotes = JSON.parse(readNotes);
+    // if (req.params.note_id) {
+    console.log(`${req.method} request recieved to get a single data point`);
+    const requestedID = req.params.note_id;
+    const readNotes = fs.readFileSync('./db/db.json', 'utf8')
+    const parsedNotes = JSON.parse(readNotes);
+    console.log(`THIS IS READNOTES -------`, readNotes)
+    console.log(`THIS IS READNOTES LENGTH -------`, readNotes.length)
 
-        // Loop thru the data
-        for (let i = 0; i < parsedNotes.length; i++) {
-            const currentID = parsedNotes[i]
-            if (currentID.note_id === requestedID) {
-                res.status(200).json(currentID)
-                return;
-            }
+    console.log(`THIS IS PARSEDNOTES --------------------------`, parsedNotes)
+    console.log(`THIS IS PARSEDNOTES LENGTH --------------------------`, parsedNotes.length)
+
+    // Loop thru the data
+    for (let i = 0; i < parsedNotes.length; i++) {
+        const currentID = parsedNotes[i]
+        console.log(currentID)
+        if (currentID.note_id === requestedID) {
+            res.status(200).json(currentID)
+            return;
         }
-        res.status(404).send(`Reivew not found`)
-    } else {
-        res.status(400).send(`Review ID not provided`)
+
     }
+    //     res.status(404).send(`Reivew not found`)
+    // } else {
+    //     res.status(400).send(`Review ID not provided`)
+    // }
 })
 
 
