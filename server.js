@@ -81,7 +81,7 @@ app.post('/api/notes', (req, res) => {
 // GET route for ID
 // Testing call for ID
 app.get('/api/notes/:id', (req, res) => {
-    const requestID = req.params.note
+    const requestID = req.params.id
     const readNotes = fs.readFileSync('./db/db.json', 'utf8')
     const parsedNotes = JSON.parse(readNotes);
     // Iterate through the terms name to check if it matches `req.params.note_id`
@@ -104,7 +104,7 @@ app.get('/api/notes/:id', (req, res) => {
 
 // DELETE Route for ID
 app.delete('/api/notes/:id', (req, res) => {
-    const deleteID = req.params.note
+    const deleteID = req.params.id
     const readNotes = fs.readFileSync('./db/db.json', 'utf8')
     const parsedNotes = JSON.parse(readNotes);
     // Iterate through the terms name to check if it matches `req.params.note_id`
