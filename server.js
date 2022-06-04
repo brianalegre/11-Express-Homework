@@ -80,55 +80,57 @@ app.post('/api/notes', (req, res) => {
 // Bonus
 // GET route for ID
 // Testing call for ID
-// app.get('/api/notes/:note_id', (req, res) => {
-//     const requestedTerm = req.params.note_id
-//     const readNotes = fs.readFileSync('./db/db.json', 'utf8')
-//     const parsedNotes = JSON.parse(readNotes);
-//     // Iterate through the terms name to check if it matches `req.params.term`
-//     console.log('PARSEDNOTES NOTES LENGTH:', parsedNotes.length)
-//     console.log('REQUESTED TERM IS:', requestedTerm)
-
-//     if (requestedTerm) {
-//         for (let i = 0; i < parsedNotes.length; i++) {
-//             if (requestedTerm === parsedNotes[i]) {
-//                 return res.json(parsedNotes[i]);
-//             }
-//         }
-//     }
-
-
-//     // Return a message if the term doesn't exist in our DB
-//     return res.json('No term found');
-
-// })
-
-app.get('app/notes/:note_id', (req, res) => {
-    // if (req.params.note_id) {
-    console.log(`${req.method} request recieved to get a single data point`);
-    const requestedID = req.params.note_id;
+app.get('/api/notes/:note_id', (req, res) => {
+    const requestID = req.params.note_id
     const readNotes = fs.readFileSync('./db/db.json', 'utf8')
     const parsedNotes = JSON.parse(readNotes);
-    console.log(`THIS IS READNOTES -------`, readNotes)
-    console.log(`THIS IS READNOTES LENGTH -------`, readNotes.length)
+    // Iterate through the terms name to check if it matches `req.params.term`
+    console.log('PARSEDNOTES NOTES LENGTH:', parsedNotes.length)
+    console.log('REQUESTED TERM IS:', requestID)
 
-    console.log(`THIS IS PARSEDNOTES --------------------------`, parsedNotes)
-    console.log(`THIS IS PARSEDNOTES LENGTH --------------------------`, parsedNotes.length)
-
-    // Loop thru the data
-    for (let i = 0; i < parsedNotes.length; i++) {
-        const currentID = parsedNotes[i]
-        console.log(currentID)
-        if (currentID.note_id === requestedID) {
-            res.status(200).json(currentID)
-            return;
+    if (requestID) {
+        console.info(`${req.method} request received to get a single a review`);
+        for (let i = 0; i < parsedNotes.length; i++) {
+            const currentID = parsedNotes[i]
+            if (currentID.note_id === requestID) {
+                return res.json(currentID);
+            }
         }
-
     }
-    //     res.status(404).send(`Reivew not found`)
-    // } else {
-    //     res.status(400).send(`Review ID not provided`)
-    // }
+
+
+    // Return a message if the term doesn't exist in our DB
+    return res.json('No term found');
+
 })
+
+// app.get('app/notes/:note_id', (req, res) => {
+//     // if (req.params.note_id) {
+//     console.log(`${req.method} request recieved to get a single data point`);
+//     const requestedID = req.params.note_id;
+//     const readNotes = fs.readFileSync('./db/db.json', 'utf8')
+//     const parsedNotes = JSON.parse(readNotes);
+//     console.log(`THIS IS READNOTES -------`, readNotes)
+//     console.log(`THIS IS READNOTES LENGTH -------`, readNotes.length)
+
+//     console.log(`THIS IS PARSEDNOTES --------------------------`, parsedNotes)
+//     console.log(`THIS IS PARSEDNOTES LENGTH --------------------------`, parsedNotes.length)
+
+//     // Loop thru the data
+//     for (let i = 0; i < parsedNotes.length; i++) {
+//         const currentID = parsedNotes[i]
+//         console.log(currentID)
+//         if (currentID.note_id === requestedID) {
+//             res.status(200).json(currentID)
+//             return;
+//         }
+
+//     }
+//     //     res.status(404).send(`Reivew not found`)
+//     // } else {
+//     //     res.status(400).send(`Review ID not provided`)
+//     // }
+// })
 
 
 // GET Route for index.html
