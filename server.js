@@ -80,27 +80,47 @@ app.post('/api/notes', (req, res) => {
 // Bonus
 // GET route for ID
 // Testing call for ID
-app.get('/api/notes/:note_id', (req, res) => {
-    const requestedTerm = req.params.note_id
-    const readNotes = fs.readFileSync('./db/db.json', 'utf8')
-    const parsedNotes = JSON.parse(readNotes);
-    // Iterate through the terms name to check if it matches `req.params.term`
-    console.log('PARSEDNOTES NOTES LENGTH:', parsedNotes.length)
-    console.log('READ NOTES------:', readNotes)
-    console.log('REQUESTED TERM IS:', requestedTerm)
+// app.get('/api/notes/:note_id', (req, res) => {
+//     const requestedTerm = req.params.note_id
+//     const readNotes = fs.readFileSync('./db/db.json', 'utf8')
+//     const parsedNotes = JSON.parse(readNotes);
+//     // Iterate through the terms name to check if it matches `req.params.term`
+//     console.log('PARSEDNOTES NOTES LENGTH:', parsedNotes.length)
+//     console.log('REQUESTED TERM IS:', requestedTerm)
 
-    if (requestedTerm) {
+//     if (requestedTerm) {
+//         for (let i = 0; i < parsedNotes.length; i++) {
+//             if (requestedTerm === parsedNotes[i]) {
+//                 return res.json(parsedNotes[i]);
+//             }
+//         }
+//     }
+
+
+//     // Return a message if the term doesn't exist in our DB
+//     return res.json('No term found');
+
+// })
+
+app.get('app/notes/:note_id', (req, res) => {
+    if (req.params.note_id) {
+        console.log(`${req.method} request recieved to get a single data point`);
+        const requestedID = req.params.note_id;
+        const readNotes = fs.readFileSync('./db/db.json', 'utf8')
+        const parsedNotes = JSON.parse(readNotes);
+
+        // Loop thru the data
         for (let i = 0; i < parsedNotes.length; i++) {
-            if (requestedTerm === parsedNotes[i]) {
-                return res.json(parsedNotes[i]);
+            const currentID = parsedNotes[i]
+            if (currentID.note_id === requestedID) {
+                res.status(200).json(currentID)
+                return;
             }
         }
+        res.status(404).send(`Reivew not found`)
+    } else {
+        res.status(400).send(`Review ID not provided`)
     }
-
-
-    // Return a message if the term doesn't exist in our DB
-    return res.json('No term found');
-
 })
 
 
