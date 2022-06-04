@@ -90,9 +90,9 @@ app.get('/api/notes/:note_id', (req, res) => {
     console.log('REQUESTED TERM IS:', requestedTerm)
 
     if (requestedTerm) {
-        for (let i = 0; i < readNotes.length; i++) {
-            if (requestedTerm === readNotes[i]) {
-                return res.json(readNotes[i]);
+        for (let i = 0; i < parsedNotes.length; i++) {
+            if (requestedTerm === parsedNotes[i]) {
+                return res.json(parsedNotes[i]);
             }
         }
     }
