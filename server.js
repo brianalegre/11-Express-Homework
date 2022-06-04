@@ -80,7 +80,7 @@ app.post('/api/notes', (req, res) => {
 // Bonus
 // GET route for ID
 // Testing call for ID
-app.get('/api/notes/:note', (req, res) => {
+app.get('/api/notes/:id', (req, res) => {
     const requestID = req.params.note
     const readNotes = fs.readFileSync('./db/db.json', 'utf8')
     const parsedNotes = JSON.parse(readNotes);
@@ -103,7 +103,7 @@ app.get('/api/notes/:note', (req, res) => {
 })
 
 // DELETE Route for ID
-app.delete('/api/notes/:note', (req, res) => {
+app.delete('/api/notes/:id', (req, res) => {
     const deleteID = req.params.note
     const readNotes = fs.readFileSync('./db/db.json', 'utf8')
     const parsedNotes = JSON.parse(readNotes);
