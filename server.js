@@ -126,10 +126,11 @@ app.delete('/api/notes/:note_id', (req, res) => {
 
             }
         }
-    }
+    } else {
     // Return a message if the term doesn't exist in our DB
     return res.json('No term found');
-
+    }
+    
 })
 
 
