@@ -84,7 +84,7 @@ app.get('/api/notes/:note_id', (req, res) => {
     const requestID = req.params.note_id
     const readNotes = fs.readFileSync('./db/db.json', 'utf8')
     const parsedNotes = JSON.parse(readNotes);
-    // Iterate through the terms name to check if it matches `req.params.term`
+    // Iterate through the terms name to check if it matches `req.params.note_id`
     console.log('PARSEDNOTES NOTES LENGTH:', parsedNotes.length)
     console.log('REQUESTED TERM IS:', requestID)
 
@@ -97,40 +97,41 @@ app.get('/api/notes/:note_id', (req, res) => {
             }
         }
     }
-
-
     // Return a message if the term doesn't exist in our DB
     return res.json('No term found');
 
 })
 
-// app.get('app/notes/:note_id', (req, res) => {
-//     // if (req.params.note_id) {
-//     console.log(`${req.method} request recieved to get a single data point`);
-//     const requestedID = req.params.note_id;
-//     const readNotes = fs.readFileSync('./db/db.json', 'utf8')
-//     const parsedNotes = JSON.parse(readNotes);
-//     console.log(`THIS IS READNOTES -------`, readNotes)
-//     console.log(`THIS IS READNOTES LENGTH -------`, readNotes.length)
+// DELETE Route for ID
+app.delete('/api/notes/:note_id', (req, res) => {
+    const deleteID = req.params.note_id
+    const readNotes = fs.readFileSync('./db/db.json', 'utf8')
+    const parsedNotes = JSON.parse(readNotes);
+    // Iterate through the terms name to check if it matches `req.params.note_id`
+    console.log('PARSEDNOTES NOTES LENGTH:', parsedNotes.length)
+    console.log('REQUESTED TERM IS:', deleteID)
 
-//     console.log(`THIS IS PARSEDNOTES --------------------------`, parsedNotes)
-//     console.log(`THIS IS PARSEDNOTES LENGTH --------------------------`, parsedNotes.length)
+    if (deleteID) {
+        console.info(`${req.method} request received to get a single a review`);
+        for (let i = 0; i < parsedNotes.length; i++) {
+            const currentID = parsedNotes[i]
+            if (currentID.note_id === deleteID) {
+                const indexID = parsedNotes.indexOf(currentID)
+                parsedNotes.splice(indexID, 1)
+                // Write new notes back to the file
+                fs.writeFileSync(
+                    './db/db.json',
+                    JSON.stringify(parsedNotes, null, 4),
+                );
 
-//     // Loop thru the data
-//     for (let i = 0; i < parsedNotes.length; i++) {
-//         const currentID = parsedNotes[i]
-//         console.log(currentID)
-//         if (currentID.note_id === requestedID) {
-//             res.status(200).json(currentID)
-//             return;
-//         }
+            }
+        }
+    }
+    // Return a message if the term doesn't exist in our DB
+    return res.json('No term found');
 
-//     }
-//     //     res.status(404).send(`Reivew not found`)
-//     // } else {
-//     //     res.status(400).send(`Review ID not provided`)
-//     // }
-// })
+})
+
 
 
 // GET Route for index.html
