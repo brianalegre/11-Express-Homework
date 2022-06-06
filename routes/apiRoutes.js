@@ -11,8 +11,6 @@ router.get('/api/notes', (req, res) => {
     const notesData = fs.readFileSync(path.join(process.cwd(), "db/db.json"));
     const parsedData = JSON.parse(notesData)
     res.json(parsedData)
-    console.log('router.get process.cwd /api/notes ----------', path.join(process.cwd(), 'db/db.json'))
-    console.log('router.get /api/notes ----------', parsedData)
 })
 
 // POST Route for /api/notes
