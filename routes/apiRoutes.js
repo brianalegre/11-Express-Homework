@@ -1,7 +1,7 @@
 // Node Modules
 const fs = require('fs')
 // const path = require('path')
-const uuid = require('./helpers/uuid')
+const uuid = require('../helpers/uuid')
 const router = require('express').Router()
 
 // API Routes
