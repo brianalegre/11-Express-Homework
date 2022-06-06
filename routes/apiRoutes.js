@@ -11,6 +11,8 @@ router.get('/api/notes', (req, res) => {
     const notesData = fs.readFileSync(path.join(process.cwd(), "db/db.json"));
     const parsedData = JSON.parse(notesData)
     res.json(parsedData)
+    console.log('router.get process.cwd /api/notes ----------', path.join(process.cwd(), 'db/db.json'))
+    console.log('router.get /api/notes ----------', parsedData)
 
 })
 
@@ -18,7 +20,7 @@ router.get('/api/notes', (req, res) => {
 router.post('/api/notes', (req, res) => {
     // Log POST received
     console.log(`${req.method} request recieved to add to notes`)
-    console.log("Current working directory!!!!!!!!!!!!:", process.cwd())
+    // console.log("Current working directory!!!!!!!!!!!!:", process.cwd())
 
     // Deconstruct
     const { title, text } = req.body;
