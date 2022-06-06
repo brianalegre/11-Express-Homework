@@ -19,6 +19,11 @@ app.listen(PORT, () => console.log(`Listening on PORT: ${PORT}`))
 app.use("/", htmlRoutes);
 app.use("/", apiRoutes);
 
+// GET Route for index.html
+// Needs to be last
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'))
+})
 
 // To try later:
 // readAndAppend(newTip, './db/tips.json');
