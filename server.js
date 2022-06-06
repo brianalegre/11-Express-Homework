@@ -5,6 +5,10 @@ const express = require('express')
 const uuid = require('./helpers/uuid')
 const app = express();
 
+// Import Routes
+const apiRoutes = require('./routes/apiRoutes')
+const htmlRoutes = require('./routes/htmlRoutes')
+
 // Middleware for parsing JSON and URLencoded data
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
