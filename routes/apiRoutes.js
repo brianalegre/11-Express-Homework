@@ -44,7 +44,6 @@ router.post('/api/notes', (req, res) => {
         fs.writeFileSync(
             path.join(process.cwd(), "db/db.json"),
             JSON.stringify(parsedNotes),
-            res.json(parsedNotes)
         );
 
         // Response Status
