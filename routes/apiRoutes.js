@@ -8,7 +8,7 @@ const router = require('express').Router()
 // GET Route for /api/notes
 router.get('/api/notes', (req, res) => {
     // const notesData = JSON.parse(fs.readFileSync('../db/db.json', 'utf8'))
-    const notesData = JSON.parse(fs.readFileSync(path.join(process.cwd(), "db/db.json", 'utf8')));
+    const notesData = JSON.parse(fs.readFileSync(path.join(process.cwd(), "db/db.json")));
     res.json(notesData)
 })
 
@@ -31,7 +31,7 @@ router.post('/api/notes', (req, res) => {
 
 
         // Read current saved notes
-        const readNotes = fs.readFileSync(path.join(process.cwd(), '/db/db.json', 'utf8'))
+        const readNotes = fs.readFileSync(path.join(process.cwd(), '/db/db.json'))
 
         // Convert string into JSON object
         const parsedNotes = JSON.parse(readNotes);
@@ -64,7 +64,7 @@ router.post('/api/notes', (req, res) => {
 router.get('/api/notes/:id', (req, res) => {
     const requestID = req.params.id
     // const readNotes = fs.readFileSync('../db/db.json', 'utf8')
-    const readNotes = JSON.parse(fs.readFileSync(path.join(process.cwd(), "db/db.json", 'utf8')));
+    const readNotes = JSON.parse(fs.readFileSync(path.join(process.cwd(), "db/db.json")));
 
 
 
@@ -91,7 +91,7 @@ router.get('/api/notes/:id', (req, res) => {
 router.delete('/api/notes/:id', (req, res) => {
     const deleteID = req.params.id
     // const readNotes = fs.readFileSync('../db/db.json', 'utf8')
-    const readNotes = JSON.parse(fs.readFileSync(path.join(process.cwd(), "db/db.json", 'utf8')));
+    const readNotes = JSON.parse(fs.readFileSync(path.join(process.cwd(), "db/db.json")));
     const parsedNotes = JSON.parse(readNotes);
     // Iterate through the terms name to check if it matches `req.params.note_id`
     console.log('PARSEDNOTES NOTES LENGTH:', parsedNotes.length)
