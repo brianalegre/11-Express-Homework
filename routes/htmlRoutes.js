@@ -15,4 +15,4 @@ router.get('*', (req, res) => {
 })
 
 // Export module
-module.exports = router
+module.exports = router;

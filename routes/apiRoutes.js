@@ -1,6 +1,6 @@
 // Node Modules
 const fs = require('fs')
-const path = require('path')
+// const path = require('path')
 const uuid = require('./helpers/uuid')
 const router = require('express').Router()
 
@@ -112,4 +112,6 @@ router.delete('/api/notes/:id', (req, res) => {
 
 })
 
+// Export module
+module.exports = router;
 
