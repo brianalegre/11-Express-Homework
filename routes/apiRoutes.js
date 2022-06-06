@@ -1,13 +1,14 @@
 // Node Modules
 const fs = require('fs')
-// const path = require('path')
+const path = require('path')
 const uuid = require('../helpers/uuid')
 const router = require('express').Router()
 
 // API Routes
 // GET Route for /api/notes
 router.get('/api/notes', (req, res) => {
-    const notesData = JSON.parse(fs.readFileSync('../db/db.json', 'utf8'))
+    // const notesData = JSON.parse(fs.readFileSync('../db/db.json', 'utf8'))
+    const notesData = JSON.parse(fs.readFileSync(path.join(process.cwd(), "db/db.json", 'utf8')));
     res.json(notesData)
 })
 
@@ -30,7 +31,7 @@ router.post('/api/notes', (req, res) => {
 
 
         // Read current saved notes
-        const readNotes = fs.readFileSync('../db/db.json', 'utf8')
+        const readNotes = fs.readFileSync(path.join(process.cwd(), '/db/db.json', 'utf8'))
 
         // Convert string into JSON object
         const parsedNotes = JSON.parse(readNotes);
@@ -40,7 +41,7 @@ router.post('/api/notes', (req, res) => {
         console.log(`Hello this is brian`)
         // Write new notes back to the file
         fs.writeFileSync(
-            './db/db.json',
+            path.join(process.cwd(), "db/db.json"),
             JSON.stringify(parsedNotes, null, 4),
         );
 
@@ -62,7 +63,11 @@ router.post('/api/notes', (req, res) => {
 // Testing call for ID
 router.get('/api/notes/:id', (req, res) => {
     const requestID = req.params.id
-    const readNotes = fs.readFileSync('../db/db.json', 'utf8')
+    // const readNotes = fs.readFileSync('../db/db.json', 'utf8')
+    const readNotes = JSON.parse(fs.readFileSync(path.join(process.cwd(), "db/db.json", 'utf8')));
+
+
+
     const parsedNotes = JSON.parse(readNotes);
     // Iterate through the terms name to check if it matches `req.params.note_id`
     console.log('PARSEDNOTES NOTES LENGTH:', parsedNotes.length)
@@ -85,7 +90,8 @@ router.get('/api/notes/:id', (req, res) => {
 // DELETE Route for ID
 router.delete('/api/notes/:id', (req, res) => {
     const deleteID = req.params.id
-    const readNotes = fs.readFileSync('../db/db.json', 'utf8')
+    // const readNotes = fs.readFileSync('../db/db.json', 'utf8')
+    const readNotes = JSON.parse(fs.readFileSync(path.join(process.cwd(), "db/db.json", 'utf8')));
     const parsedNotes = JSON.parse(readNotes);
     // Iterate through the terms name to check if it matches `req.params.note_id`
     console.log('PARSEDNOTES NOTES LENGTH:', parsedNotes.length)
@@ -100,16 +106,15 @@ router.delete('/api/notes/:id', (req, res) => {
                 parsedNotes.splice(indexID, 1)
                 // Write new notes back to the file
                 fs.writeFileSync(
-                    './db/db.json',
+                    path.join(process.cwd(), "db/db.json"),
                     JSON.stringify(parsedNotes, null, 4),
                 );
 
             }
         }
     }
-    // Return a message if the term doesn't exist in our DB
-    return res.json('No term found');
-
+    // Message
+    console.info(`${req.method} request received. Note deleted`);
 })
 
 // Export module
