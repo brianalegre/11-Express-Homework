@@ -8,8 +8,10 @@ const router = require('express').Router()
 // GET Route for /api/notes
 router.get('/api/notes', (req, res) => {
     // const notesData = JSON.parse(fs.readFileSync('../db/db.json', 'utf8'))
-    const notesData = JSON.parse(fs.readFileSync(path.join(process.cwd(), "db/db.json")));
-    res.json(notesData)
+    const notesData = fs.readFileSync(path.join(process.cwd(), "db/db.json"));
+    const parsedData = JSON.parse(notesData)
+    res.json(parsedData)
+
 })
 
 // POST Route for /api/notes
@@ -42,7 +44,7 @@ router.post('/api/notes', (req, res) => {
         // Write new notes back to the file
         fs.writeFileSync(
             path.join(process.cwd(), "db/db.json"),
-            JSON.stringify(parsedNotes, null, 4),
+            JSON.stringify(parsedNotes),
         );
 
         // Response Status
@@ -64,10 +66,7 @@ router.post('/api/notes', (req, res) => {
 router.get('/api/notes/:id', (req, res) => {
     const requestID = req.params.id
     // const readNotes = fs.readFileSync('../db/db.json', 'utf8')
-    const readNotes = JSON.parse(fs.readFileSync(path.join(process.cwd(), "db/db.json")));
-
-
-
+    const readNotes = fs.readFileSync(path.join(process.cwd(), "db/db.json"));
     const parsedNotes = JSON.parse(readNotes);
     // Iterate through the terms name to check if it matches `req.params.note_id`
     console.log('PARSEDNOTES NOTES LENGTH:', parsedNotes.length)
@@ -91,7 +90,7 @@ router.get('/api/notes/:id', (req, res) => {
 router.delete('/api/notes/:id', (req, res) => {
     const deleteID = req.params.id
     // const readNotes = fs.readFileSync('../db/db.json', 'utf8')
-    const readNotes = JSON.parse(fs.readFileSync(path.join(process.cwd(), "db/db.json")));
+    const readNotes = fs.readFileSync(path.join(process.cwd(), "db/db.json"));
     const parsedNotes = JSON.parse(readNotes);
     // Iterate through the terms name to check if it matches `req.params.note_id`
     console.log('PARSEDNOTES NOTES LENGTH:', parsedNotes.length)
@@ -107,7 +106,7 @@ router.delete('/api/notes/:id', (req, res) => {
                 // Write new notes back to the file
                 fs.writeFileSync(
                     path.join(process.cwd(), "db/db.json"),
-                    JSON.stringify(parsedNotes, null, 4),
+                    JSON.stringify(parsedNotes),
                 );
 
             }
