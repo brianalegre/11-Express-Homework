@@ -17,7 +17,6 @@ router.get('/api/notes', (req, res) => {
 router.post('/api/notes', (req, res) => {
     // Log POST received
     console.log(`${req.method} request recieved to add to notes`)
-    // console.log("Current working directory!!!!!!!!!!!!:", process.cwd())
 
     // Deconstruct
     const { title, text } = req.body;
@@ -29,7 +28,6 @@ router.post('/api/notes', (req, res) => {
             text,
             id: uuid(),
         }
-
 
         // Read current saved notes
         const readNotes = fs.readFileSync(path.join(process.cwd(), '/db/db.json'))
@@ -67,9 +65,8 @@ router.get('/api/notes/:id', (req, res) => {
     // const readNotes = fs.readFileSync('../db/db.json', 'utf8')
     const readNotes = fs.readFileSync(path.join(process.cwd(), "db/db.json"));
     const parsedNotes = JSON.parse(readNotes);
-    // Iterate through the terms name to check if it matches `req.params.note_id`
-    console.log('PARSEDNOTES NOTES LENGTH:', parsedNotes.length)
-    console.log('REQUESTED TERM IS:', requestID)
+    // Iterate through the terms name to check if it matches `req.params.id
+    console.log('REQUESTED SINGLE NOTE ID IS:', requestID)
 
     if (requestID) {
         console.info(`${req.method} request received to get a single a review`);
@@ -88,12 +85,10 @@ router.get('/api/notes/:id', (req, res) => {
 // DELETE Route for ID
 router.delete('/api/notes/:id', (req, res) => {
     const deleteID = req.params.id
-    // const readNotes = fs.readFileSync('../db/db.json', 'utf8')
     const readNotes = fs.readFileSync(path.join(process.cwd(), "db/db.json"));
     const parsedNotes = JSON.parse(readNotes);
-    // Iterate through the terms name to check if it matches `req.params.note_id`
-    console.log('PARSEDNOTES NOTES LENGTH:', parsedNotes.length)
-    console.log('REQUESTED TERM IS:', deleteID)
+    // Iterate through the terms name to check if it matches `req.params.id`
+    console.log('REQUESTED DELETE ID IS:', deleteID)
 
     if (deleteID) {
         console.info(`${req.method} request received to get a single a review`);

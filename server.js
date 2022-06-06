@@ -3,7 +3,6 @@ const express = require('express')
 const app = express();
 const path = require('path')
 
-
 // Import Routes
 const apiRoutes = require('./routes/apiRoutes')
 const htmlRoutes = require('./routes/htmlRoutes')
@@ -26,13 +25,3 @@ app.use("/", htmlRoutes);
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '/public/index.html'))
 })
-
-// To try later:
-// readAndAppend(newTip, './db/tips.json');
-// res.json(`Tip added successfully 🚀`);
-// } else {
-// res.error('Error in adding tip');
-// }
-
-// Lookup nanoid
-// Nick says its better than UUID
