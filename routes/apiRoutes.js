@@ -112,7 +112,7 @@ router.delete('/api/notes/:id', (req, res) => {
         }
     }
     // Message
-    console.info(`${req.method} request received. Note deleted`);
+    return `${req.method} request received. Note deleted`;
 })
 
 // Export module
