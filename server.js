@@ -3,8 +3,8 @@ const express = require('express')
 const app = express();
 
 // Import Routes
-const router = require('./routes/apiRoutes')
-const router = require('./routes/htmlRoutes')
+const apiRoutes = require('./routes/apiRoutes')
+const htmlRoutes = require('./routes/htmlRoutes')
 
 // Middleware for parsing JSON and URLencoded data
 app.use(express.json());
@@ -16,8 +16,8 @@ const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`Listening on PORT: ${PORT}`))
 
 // Call Routes
-app.use("/", router);
-app.use("/", router);
+app.use("/", htmlRoutes);
+app.use("/", apiRoutes);
 
 
 // To try later:
