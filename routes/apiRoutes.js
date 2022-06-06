@@ -13,7 +13,6 @@ router.get('/api/notes', (req, res) => {
     res.json(parsedData)
     console.log('router.get process.cwd /api/notes ----------', path.join(process.cwd(), 'db/db.json'))
     console.log('router.get /api/notes ----------', parsedData)
-
 })
 
 // POST Route for /api/notes
@@ -47,6 +46,7 @@ router.post('/api/notes', (req, res) => {
         fs.writeFileSync(
             path.join(process.cwd(), "db/db.json"),
             JSON.stringify(parsedNotes),
+            res.json(parsedNotes)
         );
 
         // Response Status
