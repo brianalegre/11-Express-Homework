@@ -37,7 +37,6 @@ router.post('/api/notes', (req, res) => {
 
         // Add a new review
         parsedNotes.push(newNote);
-        console.log(`Hello this is brian`)
         // Write new notes back to the file
         fs.writeFileSync(
             path.join(process.cwd(), "db/db.json"),
@@ -49,7 +48,6 @@ router.post('/api/notes', (req, res) => {
             status: 'Succcess',
             body: newNote,
         }
-        console.log(`Hello this is chad`)
         // Send response status
         res.status(201).json(response)
     } else {
