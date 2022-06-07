@@ -59,13 +59,12 @@ router.post('/api/notes', (req, res) => {
 
 // Bonus
 // GET route for ID
-// Testing call for ID
 router.get('/api/notes/:id', (req, res) => {
     const requestID = req.params.id
     // const readNotes = fs.readFileSync('../db/db.json', 'utf8')
     const readNotes = fs.readFileSync(path.join(process.cwd(), "db/db.json"));
     const parsedNotes = JSON.parse(readNotes);
-    // Iterate through the terms name to check if it matches `req.params.id
+    // Iterate through the terms name to check if it matches `req.params.id`
     console.log('REQUESTED SINGLE NOTE ID IS:', requestID)
 
     if (requestID) {
