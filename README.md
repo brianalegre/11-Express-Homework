@@ -5,7 +5,7 @@
 ## Table of Contents 📑
 - [Description 📋](#description-📋)
 - [Application Preview 📸](#application-preview-📸)
-- [Installation 💿](#installation-💿)
+- [Installation :cd:](#installation-:cd:)
 - [Usage 💻](#usage-💻)
 - [Links 🔗](#links-🔗)
 - [Criteria ✔️](#criteria-✔️)
@@ -28,7 +28,7 @@ Create an application called Note Taker that can be used to write and save notes
     <img alt="Site Preview2" src="./public/assets/images/SitePreview3.png">
 </p>
 
-## Installation 💿
+## Installation :cd:
 - Copy the repository to your system
 - npm install
 - node server.js
