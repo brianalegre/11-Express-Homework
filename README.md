@@ -3,7 +3,7 @@
 
 
 ## Table of Contents 📑
-- [Description](#description-📋)
+- [Description](#description)
 - [Application Preview](#application-preview-📸)
 - [Installation](#installation-💿)
 - [Usage](#usage-💻)
